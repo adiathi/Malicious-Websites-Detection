@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 36px;
+            color: #333333;
+            text-shadow: 2px 2px #dddddd;
+        }
+        
+        p {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333333;
+            text-shadow: 2px 2px #dddddd;
+        }
+        
+        .malicious {
+            color: #ff0000;
+            font-weight: bold;
+        }
+        
+        .safe {
+            color: #00ff00;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prediction Result:</h1>
+    {% if prediction == 0 %}
+        <p class="malicious">Ohhhoo!!! This website is Malicious</p>
+    {% else %}
+        <p class="safe">Thank god this website is safe</p>
+    {% endif %}
+</body>
+</html>

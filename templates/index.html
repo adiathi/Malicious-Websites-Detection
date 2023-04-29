@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ML Prediction Model</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 0;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      input[type="text"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Website Details</h1>
+      <form action="/predict" method="POST">
+        <label for="num_special_chars">Number of Special Characters:</label>
+        <input type="text" name="num_special_chars">
+        
+        <label for="charset">Charset:</label>
+        <input type="text" name="charset">
+        
+        <label for="server">Server:</label>
+        <input type="text" name="server">
+        
+        <label for="site_reg_date">Site Registration Date:</label>
+        <input type="text" name="site_reg_date">
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+</html>

@@ -21,9 +21,10 @@ def calculate_days_difference(start_date):
     try:      
         # Get the current date
         current_date = datetime.now()
+        datetime_obj = datetime.strptime(start_date, "%d/%m/%Y %H:%M")
 
         # Calculate the difference between current date and start date
-        days_difference = (current_date - start_date).days
+        days_difference = (current_date - datetime_obj).days
 
         return days_difference
     
@@ -33,13 +34,13 @@ def calculate_days_difference(start_date):
 # Route for the home page
 @app.route('/')
 def home():
-    return render_template('main.html')
+    return render_template('index.html')
 
 # Route for prediction
 @app.route('/predict', methods=['POST'])
 def predict():
     # Get the input data from the request
-    number_special_character = request.form['number_special_character']
+    number_special_character = request.form['num_special_chars']
     charset = request.form['charset']
     server = request.form['server']
     site_reg_date = request.form['site_reg_date']
@@ -48,7 +49,7 @@ def predict():
     site_age= calculate_days_difference(site_reg_date)
     data = {
         "NUMBER_SPECIAL_CHARACTERS": [number_special_character],
-        "CHARSET_TYPE": [charset],
+        "CHARSET_TYPE": [Charset_encoded_value],
         "SERVER_TYPE": [server_encoded_value],
         "SITE_AGE": [site_age]
     }
@@ -56,15 +57,8 @@ def predict():
     df = pd.DataFrame(data)
     prediction = model.predict(df)
     
-
-    # Prepare the response data
-    response = {
-        'prediction': prediction
-    }
-
-    # Return the response as JSON
-    return jsonify(response)
-
+    # Render the prediction result to a new HTML template
+    return render_template('result.html', prediction=prediction[0])
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False,host="0.0.0.0",port=80)
